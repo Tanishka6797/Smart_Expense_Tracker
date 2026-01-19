@@ -1,11 +1,17 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root",
-        database="Expense_Tracker"
+        host=os.getenv("DB_HOST", "127.0.0.1"),
+        port=3306,
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        use_pure=True
     )
 
 def close_db_connection(cursor, conn):
