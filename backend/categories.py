@@ -29,7 +29,6 @@ def get_categories():
 def add_category():
     data = request.json
 
-    
     if not data or "categoryName" not in data:
         return jsonify({"error": "categoryName is required"}), 400
 
